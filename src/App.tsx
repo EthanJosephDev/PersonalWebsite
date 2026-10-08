@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Experimental from "./pages/Experimental";
 import NotFound from "./pages/NotFound";
+import { lazy, Suspense } from "react";
+
+const Sentinel = lazy(() => import("./pages/Sentinel"));
 
 const queryClient = new QueryClient();
 
@@ -18,6 +21,14 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/experimental" element={<Experimental />} />
+          <Route
+            path="/sentinel"
+            element={
+              <Suspense fallback={null}>
+                <Sentinel />
+              </Suspense>
+            }
+          />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
