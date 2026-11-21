@@ -1,9 +1,6 @@
 import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
-import Hls from "hls.js";
-
-const VIDEO_SRC = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
 
 const socials = [
   { name: "LinkedIn", href: "https://www.linkedin.com/in/ethan-joseph-990a29282/" },
@@ -14,21 +11,6 @@ const ease = [0.25, 0.1, 0.25, 1] as [number, number, number, number];
 
 const Contact = () => {
   const marqueeRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // HLS video
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = VIDEO_SRC;
-    } else if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(VIDEO_SRC);
-      hls.attachMedia(video);
-      return () => hls.destroy();
-    }
-  }, []);
 
   // GSAP marquee
   useEffect(() => {
@@ -52,7 +34,8 @@ const Contact = () => {
       {/* Background video */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <video
-          ref={videoRef}
+          src="/black-hole.mp4"
+          poster="/black-hole.jpg"
           autoPlay
           muted
           loop

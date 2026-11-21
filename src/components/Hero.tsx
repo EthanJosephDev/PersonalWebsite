@@ -1,33 +1,13 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, Linkedin } from "lucide-react";
 import gsap from "gsap";
-import Hls from "hls.js";
 import Navbar from "./Navbar";
 import mcmasterShield from "@/assets/mcmaster-shield.png";
 import donemakerLogo from "@/assets/donemaker-logo.jpg";
 
-const VIDEO_SRC =
-  "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
-
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // HLS video setup
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(VIDEO_SRC);
-      hls.attachMedia(video);
-      return () => hls.destroy();
-    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = VIDEO_SRC;
-    }
-  }, []);
 
   // GSAP entrance
   useEffect(() => {
@@ -65,7 +45,8 @@ const Hero = () => {
       {/* Background video */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
-          ref={videoRef}
+          src="/black-hole.mp4"
+          poster="/black-hole.jpg"
           autoPlay
           muted
           loop
