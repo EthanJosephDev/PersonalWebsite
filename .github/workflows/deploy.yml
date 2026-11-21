@@ -72,8 +72,11 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy SPA fallback
-        run: cp dist/index.html dist/404.html
+      - name: Prepare portfolio routes for GitHub Pages
+        run: |
+          mkdir -p dist/experimental
+          cp dist/index.html dist/experimental/index.html
+          cp dist/index.html dist/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

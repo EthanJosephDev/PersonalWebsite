@@ -48,7 +48,7 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center pt-3 sm:pt-5 px-4 pointer-events-none">
       {/* Visual Playground Button */}
       <Link
-        to="/experimental"
+        to="/experimental/"
         aria-label="Experimental — Visual Playground"
         title="Experimental"
         className="pointer-events-auto group absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 mt-1.5 sm:mt-2.5 inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/[0.14] bg-neutral-950/40 backdrop-blur-2xl text-neutral-400 hover:text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_8px_30px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-white/30 hover:scale-105 hover:bg-white/[0.08]"
